@@ -29,7 +29,7 @@ const create = async (data, files) => {
         const foundCate = await Category.findById(c)
         if (foundCate.categoryName === 'Loot Deals') {
           await sendNotifications({
-            title: `${parseInt(added.discount)}% OFF - ${added.productName}`, body: 'New Super Deals Added', imageUrl: `http://192.168.0.111:5000/util/file/${added.productImage}`, productData: {
+            title: `${parseInt(added.discount)}% OFF - ${added.productName}`, body: 'New Super Deals Added', imageUrl: `https://lootdealsapp.com/api/util/file/${added.productImage}`, productData: {
               productId: added.id || added._id,
               type: 'Product',
               productName: added.productName
