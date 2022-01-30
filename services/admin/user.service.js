@@ -5,32 +5,12 @@ const moment = require('moment')
 
 const all = async () => {
   try {
-    const appuser = await User.aggregate([
-      { $match: { role: 'user' } },
-      {
-        $lookup: {
-          from: "userbusinesses",
-          localField: "_id",
-          foreignField: "userId",
-          as: "businesses",
-        },
-      },
-      {
-        $addFields: {
-          totalBusinesses: { $size: "$businesses" }
-        }
-      },
-      {
-        $sort: { _id: -1 }
-      }
-    ])
-    const adminuser = await User.aggregate([
-      { $match: { $and: [{ role: { $ne: "user" } }, { role: { $ne: "superadmin" } }] } }])
+    const users = await User.aggregate([
+      { $match: { $and: [{ role: { $ne: "superadmin" } }] } }])
 
     return {
       status: httpStatus.OK,
-      appuser: appuser,
-      adminuser: adminuser,
+      data: users,
     };
   } catch (error) {
     console.log(error);

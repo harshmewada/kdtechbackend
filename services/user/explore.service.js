@@ -52,7 +52,6 @@ const all = async (id) => {
       const platform = await Platform.findById(p.platformId)
       return {
         ...p._doc, platformImage: platform.platformImage,
-        productDescription: "<h6>This product can be purchased by clicking on this button</h6>"
       }
     }))
 

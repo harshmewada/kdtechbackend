@@ -63,6 +63,15 @@ const categorySchema = mongoose.Schema(
       type: Number,
       default: 0
     },
+    postedBy: {
+      type: String,
+      required: false,
+    },
+    postedById: {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: "users",
+      required: false,
+    },
     status: {
       type: Boolean,
       default: true,

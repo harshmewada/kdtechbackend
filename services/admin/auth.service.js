@@ -13,7 +13,7 @@ const generateOtp = () => {
 };
 
 const login = async (data) => {
-  let user = await User.findOne({ email: data.email, role: { $ne: 'user' }, status: true });
+  let user = await User.findOne({ mobile: data.mobile, role: { $ne: 'user' }, status: true });
   if (!user) {
     return {
       status: httpStatus.INTERNAL_SERVER_ERROR,

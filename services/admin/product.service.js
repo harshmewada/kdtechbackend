@@ -18,9 +18,11 @@ const all = async (status) => {
 
 const create = async (data, files) => {
   try {
+    console.log('data', data);
     data.productImage = await getFilesData(files[0])
     data.categoryId = JSON.parse(data.categoryId)
     data.discount = ((data.basePrice - data.salePrice) / data.basePrice) * 100
+    data.isManyProduct = data.isManyProduct !== 'undefined' ? true : false
     const added = await Product.create(data);
     if (added) {
       await Promise.all(data.categoryId.map(async c => {
