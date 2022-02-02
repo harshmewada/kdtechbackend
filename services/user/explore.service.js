@@ -47,7 +47,7 @@ const all = async (id) => {
       }))
 
     }
-    const trending = await Product.find({ status: true }).limit(20).sort({ viewCount: -1 })
+    const trending = await Product.find({ status: true }).limit(20).sort({ createdAt: -1 })
     const trendingDeals = await Promise.all(trending.map(async p => {
       const platform = await Platform.findById(p.platformId)
       return {

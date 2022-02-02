@@ -41,7 +41,7 @@ const trending = async (page) => {
   try {
     const rowsPerPage = 10
     const skip = page * rowsPerPage;
-    const trending = await Product.find({ status: true }).skip(skip).limit(rowsPerPage).sort({ viewCount: -1 })
+    const trending = await Product.find({ status: true }).skip(skip).limit(rowsPerPage).sort({ createdAt: -1 })
     const trendingDeals = await Promise.all(trending.map(async p => {
       const platform = await Platform.findById(p.platformId)
       return {
